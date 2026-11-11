@@ -269,4 +269,8 @@ bash smoke-test.sh http://127.0.0.1:3000
 
 ## 许可
 
-仅供技术学习与演示使用。
+本项目采用 [MIT License](LICENSE) 开源。
+
+Copyright (c) 2026 SorenX
+
+第三方依赖（如 Express、React 等）仍遵循各自许可证。解析到的素材版权归原作者所有，请仅处理你本人拥有完整著作权的素材。
