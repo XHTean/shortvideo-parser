@@ -1,0 +1,123 @@
+<view class="page-bg"></view>
+<ios-navbar title="光影解析" scrollTop="{{scrollTop}}" />
+
+<view class="wrap" style="padding-top:{{navHeight}}px">
+
+  <!-- ============ 首屏标题区 ============ -->
+  <view class="hero anim-fade-up">
+    <view class="hero-eyebrow">SHORT VIDEO TOOLKIT</view>
+    <view class="hero-title">光影解析</view>
+    <view class="hero-sub">粘贴分享链接，取回无水印原片</view>
+  </view>
+
+  <!-- ============ 输入卡片 ============ -->
+  <view class="field anim-fade-up {{focused ? 'field-focus' : ''}}" style="animation-delay:.06s">
+    <textarea
+      wx:if="{{!hideNative}}"
+      class="field-input"
+      value="{{input}}"
+      placeholder="把抖音 / 快手 / 小红书 / B站 的分享链接粘到这里…"
+      placeholder-class="field-placeholder"
+      maxlength="{{maxLen}}"
+      auto-height
+      show-confirm-bar="{{false}}"
+      cursor-spacing="24"
+      disable-default-padding="{{true}}"
+      bindinput="onInput"
+      bindfocus="onFocus"
+      bindblur="onBlur"
+    />
+    <view wx:else class="field-input field-mirror">{{input}}</view>
+
+    <view class="field-bar">
+      <view class="chip" hover-class="chip-hover" hover-stay-time="60" bindtap="onPaste">
+        <view class="chip-dot"></view>
+        <text>读取剪贴板</text>
+      </view>
+      <view wx:if="{{input}}" class="chip chip-quiet" hover-class="chip-hover" hover-stay-time="60" bindtap="onClear">
+        <text>清空</text>
+      </view>
+      <view class="field-count">{{input.length}}/{{maxLen}}</view>
+    </view>
+  </view>
+
+  <!-- ============ 主按钮 ============ -->
+  <view
+    class="btn btn-primary main-btn anim-fade-up {{canParse ? '' : 'btn-disabled'}}"
+    style="animation-delay:.12s"
+    hover-class="none"
+    bindtap="onParse"
+  >
+    <text>{{loading ? '正在解析…' : '开始解析'}}</text>
+  </view>
+
+  <view class="hint-line anim-fade-up" style="animation-delay:.16s">
+    只做链接解析，不留存任何素材
+  </view>
+
+  <!-- ============ 支持平台 ============ -->
+  <view class="section anim-fade-up" style="animation-delay:.2s">
+    <view class="section-head">
+      <text class="section-title">支持的平台</text>
+    </view>
+    <view class="plat-wrap">
+      <view class="plat" wx:for="{{platforms}}" wx:key="key">
+        <view class="plat-dot" style="background:{{item.color}}"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 最近解析 ============ -->
+  <view class="section anim-fade-up" style="animation-delay:.24s" wx:if="{{recent.length}}">
+    <view class="section-head">
+      <text class="section-title">最近解析</text>
+      <view class="section-more" bindtap="goHistory">
+        <text>全部</text>
+        <view class="more-chevron"></view>
+      </view>
+    </view>
+
+    <view class="group">
+      <view
+        class="cell recent-cell"
+        wx:for="{{recent}}"
+        wx:key="id"
+        hover-class="cell-hover"
+        hover-stay-time="60"
+        data-id="{{item.id}}"
+        bindtap="openRecent"
+      >
+        <view class="thumb">
+          <image wx:if="{{item.cover}}" class="thumb-img" src="{{item.cover}}" mode="aspectFill" />
+          <view wx:else class="thumb-empty"></view>
+          <view wx:if="{{item.type === 'video'}}" class="thumb-play"></view>
+        </view>
+        <view class="recent-main">
+          <view class="recent-title">{{item.title}}</view>
+          <view class="recent-meta">
+            <text class="meta-badge" style="color:{{item.platformColor}}">{{item.platformName}}</text>
+            <text class="meta-dot">·</text>
+            <text>{{item.timeText}}</text>
+          </view>
+        </view>
+        <view class="cell-arrow"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>
+
+<ios-loading show="{{loading}}" text="正在解析" subText="{{loadingTip}}" />
+
+<ios-modal
+  show="{{modal.show}}"
+  title="{{modal.title}}"
+  content="{{modal.content}}"
+  confirmText="{{modal.confirmText}}"
+  showCancel="{{modal.showCancel}}"
+  cancelText="{{modal.cancelText}}"
+  bind:confirm="onModalConfirm"
+  bind:cancel="onModalCancel"
+/>

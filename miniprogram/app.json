@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/preview/preview",
+    "pages/history/history",
+    "pages/about/about"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#F2F2F7",
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 80
+  },
+  "tabBar": {
+    "color": "#8E8E93",
+    "selectedColor": "#0A84FF",
+    "backgroundColor": "#F9F9FBF2",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "解析",
+        "iconPath": "static/icons/parse.png",
+        "selectedIconPath": "static/icons/parse-on.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "iconPath": "static/icons/history.png",
+        "selectedIconPath": "static/icons/history-on.png"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "text": "关于",
+        "iconPath": "static/icons/about.png",
+        "selectedIconPath": "static/icons/about-on.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.writePhotosAlbum": {
+      "desc": "用于将解析到的图片或视频保存到你的手机相册"
+    }
+  },
+  "requiredPrivateInfos": [],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

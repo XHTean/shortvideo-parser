@@ -1,0 +1,80 @@
+.ld-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(242, 242, 247, 0.42);
+  -webkit-backdrop-filter: saturate(180%) blur(24rpx);
+  backdrop-filter: saturate(180%) blur(24rpx);
+}
+
+.ld-box {
+  min-width: 280rpx;
+  padding: 52rpx 48rpx 44rpx;
+  border-radius: 40rpx;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: saturate(180%) blur(40rpx);
+  backdrop-filter: saturate(180%) blur(40rpx);
+  box-shadow: 0 24rpx 80rpx rgba(20, 40, 80, 0.16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* iOS 原生菊花：12 根渐隐线条绕圈 */
+.spinner {
+  width: 76rpx;
+  height: 76rpx;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+
+.bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8rpx;
+  height: 20rpx;
+  margin-left: -4rpx;
+  margin-top: -38rpx;
+  border-radius: 4rpx;
+  background: #8E8E93;
+  transform-origin: 50% 38rpx;
+  animation: spinFade 1s linear infinite;
+}
+
+.b0  { transform: rotate(0deg);    animation-delay: -1.0000s; }
+.b1  { transform: rotate(30deg);   animation-delay: -0.9167s; }
+.b2  { transform: rotate(60deg);   animation-delay: -0.8333s; }
+.b3  { transform: rotate(90deg);   animation-delay: -0.7500s; }
+.b4  { transform: rotate(120deg);  animation-delay: -0.6667s; }
+.b5  { transform: rotate(150deg);  animation-delay: -0.5833s; }
+.b6  { transform: rotate(180deg);  animation-delay: -0.5000s; }
+.b7  { transform: rotate(210deg);  animation-delay: -0.4167s; }
+.b8  { transform: rotate(240deg);  animation-delay: -0.3333s; }
+.b9  { transform: rotate(270deg);  animation-delay: -0.2500s; }
+.b10 { transform: rotate(300deg);  animation-delay: -0.1667s; }
+.b11 { transform: rotate(330deg);  animation-delay: -0.0833s; }
+
+@keyframes spinFade {
+  0%   { opacity: 1; }
+  100% { opacity: 0.15; }
+}
+
+.ld-text {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: var(--label);
+  letter-spacing: 0.4rpx;
+}
+
+.ld-sub {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: var(--label-3);
+}

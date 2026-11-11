@@ -1,0 +1,108 @@
+<view class="page-bg"></view>
+<ios-navbar title="关于" scrollTop="{{scrollTop}}" />
+
+<view class="wrap" style="padding-top:{{navHeight}}px">
+
+  <!-- ============ 品牌区 ============ -->
+  <view class="brand anim-fade-up">
+    <view class="brand-icon">
+      <view class="bi-ring"></view>
+      <view class="bi-play"></view>
+    </view>
+    <view class="brand-name">光影解析</view>
+    <view class="brand-ver">版本 {{version}} · 技术演示版</view>
+  </view>
+
+  <!-- ============ 项目介绍 ============ -->
+  <view class="group-title">关于本程序</view>
+  <view class="group anim-fade-up" style="animation-delay:.05s">
+    <view class="intro">
+      一款采用 iOS 设计语言的短视频素材解析工具。把分享链接粘进来，自动识别来源平台、
+      取回原始无水印的视频或图片，支持在线预览、一键保存到相册、本地历史管理。
+      <view class="intro-note">个人开发者的技术实践作品，无广告、无付费、无会员。</view>
+    </view>
+  </view>
+
+  <!-- ============ 运行状态 ============ -->
+  <view class="group-title">运行状态</view>
+  <view class="group anim-fade-up" style="animation-delay:.1s">
+    <view class="cell">
+      <view class="cell-label">解析服务</view>
+      <view class="status {{status.online ? 'status-ok' : 'status-off'}}">
+        <view class="status-dot"></view>
+        <text>{{status.online ? '连接正常' : '未连接'}}</text>
+      </view>
+    </view>
+    <view class="cell" hover-class="cell-hover" hover-stay-time="60" bindtap="onCopyBase">
+      <view class="cell-label">服务地址</view>
+      <view class="cell-value">{{apiBase}}</view>
+      <view class="cell-arrow"></view>
+    </view>
+    <view class="cell">
+      <view class="cell-label">本地记录</view>
+      <view class="cell-value">{{historyCount}} 条</view>
+    </view>
+  </view>
+
+  <!-- ============ 隐私 ============ -->
+  <view class="group-title">隐私与数据</view>
+  <view class="group anim-fade-up" style="animation-delay:.15s">
+    <view class="cell">
+      <view class="cell-label">个人信息</view>
+      <view class="cell-value">不采集</view>
+    </view>
+    <view class="cell">
+      <view class="cell-label">解析记录</view>
+      <view class="cell-value">仅本机存储</view>
+    </view>
+    <view class="cell">
+      <view class="cell-label">服务端留存</view>
+      <view class="cell-value">不落库</view>
+    </view>
+    <view class="cell" hover-class="cell-hover" hover-stay-time="60" bindtap="onClearLocal">
+      <view class="cell-label cell-danger">清除本机全部记录</view>
+      <view class="cell-arrow"></view>
+    </view>
+  </view>
+
+  <!-- ============ 免责声明 ============ -->
+  <view class="group-title">免责声明</view>
+  <view class="group anim-fade-up" style="animation-delay:.2s">
+    <view class="disclaimer">{{disclaimer}}</view>
+  </view>
+
+  <!-- ============ 技术信息 ============ -->
+  <view class="group-title">技术信息</view>
+  <view class="group anim-fade-up" style="animation-delay:.25s">
+    <view class="cell">
+      <view class="cell-label">客户端</view>
+      <view class="cell-value">微信原生小程序</view>
+    </view>
+    <view class="cell">
+      <view class="cell-label">服务端</view>
+      <view class="cell-value">Node.js 接口服务</view>
+    </view>
+    <view class="cell">
+      <view class="cell-label">数据存储</view>
+      <view class="cell-value">本地 Storage</view>
+    </view>
+  </view>
+
+  <view class="foot">
+    仅用于技术学习与演示
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>
+
+<ios-modal
+  show="{{modal.show}}"
+  title="{{modal.title}}"
+  content="{{modal.content}}"
+  confirmText="{{modal.confirmText}}"
+  cancelText="{{modal.cancelText}}"
+  showCancel="{{modal.showCancel}}"
+  destructive="{{modal.destructive}}"
+  bind:confirm="onModalConfirm"
+  bind:cancel="onModalCancel"
+/>

@@ -1,0 +1,24 @@
+{
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "解析首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "历史",
+          "pathName": "pages/history/history",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

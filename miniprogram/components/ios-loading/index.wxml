@@ -1,0 +1,9 @@
+<view wx:if="{{show}}" class="ld-mask" catchtouchmove="noop">
+  <view class="ld-box anim-pop">
+    <view class="spinner">
+      <view class="bar b{{index}}" wx:for="{{bars}}" wx:key="*this"></view>
+    </view>
+    <view class="ld-text">{{text}}</view>
+    <view wx:if="{{subText}}" class="ld-sub">{{subText}}</view>
+  </view>
+</view>

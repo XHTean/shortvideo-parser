@@ -1,0 +1,22 @@
+<!-- 占位：把内容顶到导航栏下方 -->
+<view class="nav-spacer" style="height:{{statusBarHeight + navBarHeight}}px"></view>
+
+<!-- 真实导航栏 -->
+<view
+  class="nav-wrap {{scrolled ? 'nav-scrolled' : ''}}"
+  style="padding-top:{{statusBarHeight}}px"
+>
+  <view class="nav-bar" style="height:{{navBarHeight}}px">
+    <view
+      wx:if="{{showBack}}"
+      class="nav-side nav-left"
+      hover-class="nav-side-hover"
+      hover-stay-time="60"
+      bindtap="onBack"
+    >
+      <view class="nav-chevron"></view>
+    </view>
+    <view class="nav-title {{scrolled ? 'nav-title-in' : ''}}">{{title}}</view>
+    <view class="nav-side nav-right"></view>
+  </view>
+</view>

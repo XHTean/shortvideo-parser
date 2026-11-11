@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ios-navbar": "/components/ios-navbar/index",
+    "ios-loading": "/components/ios-loading/index",
+    "ios-modal": "/components/ios-modal/index"
+  },
+  "navigationStyle": "custom",
+  "backgroundColor": "#F2F2F7"
+}

@@ -1,0 +1,82 @@
+.nav-spacer {
+  width: 100%;
+}
+
+.nav-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 900;
+  background: transparent;
+  transition: background 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.nav-scrolled {
+  background: var(--nav-glass);
+  -webkit-backdrop-filter: saturate(180%) blur(44rpx);
+  backdrop-filter: saturate(180%) blur(44rpx);
+  box-shadow: 0 1rpx 0 rgba(60, 60, 67, 0.10);
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  position: relative;
+}
+
+.nav-side {
+  width: 120rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 999rpx;
+  transition: opacity 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.nav-side-hover {
+  opacity: 0.45;
+}
+
+.nav-left {
+  justify-content: flex-start;
+  padding-left: 8rpx;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-chevron {
+  width: 22rpx;
+  height: 22rpx;
+  border-left: 4rpx solid var(--ios-blue);
+  border-bottom: 4rpx solid var(--ios-blue);
+  transform: rotate(45deg);
+  border-radius: 2rpx;
+}
+
+.nav-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--label);
+  opacity: 0;
+  transform: translateY(6rpx);
+  transition: opacity 0.26s cubic-bezier(0.32, 0.72, 0, 1),
+              transform 0.26s cubic-bezier(0.32, 0.72, 0, 1);
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 160rpx;
+}
+
+.nav-title-in {
+  opacity: 1;
+  transform: translateY(0);
+}

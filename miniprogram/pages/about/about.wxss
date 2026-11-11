@@ -1,0 +1,130 @@
+.wrap {
+  padding: 0 32rpx;
+  min-height: 100vh;
+}
+
+/* ---------- 品牌 ---------- */
+.brand {
+  padding: 24rpx 0 52rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand-icon {
+  width: 156rpx;
+  height: 156rpx;
+  border-radius: 46rpx;
+  background: linear-gradient(160deg, #4BA3FF 0%, #0A6BFF 55%, #0047C7 100%);
+  box-shadow: 0 22rpx 48rpx rgba(10, 107, 255, 0.32);
+  position: relative;
+  margin-bottom: 30rpx;
+  overflow: hidden;
+}
+
+.bi-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100rpx;
+  height: 100rpx;
+  margin: -50rpx 0 0 -50rpx;
+  border: 6rpx solid rgba(255, 255, 255, 0.32);
+  border-radius: 50%;
+}
+
+.bi-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -22rpx 0 0 -14rpx;
+  width: 0;
+  height: 0;
+  border-left: 40rpx solid #FFFFFF;
+  border-top: 24rpx solid transparent;
+  border-bottom: 24rpx solid transparent;
+}
+
+.brand-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  letter-spacing: -0.6rpx;
+  color: var(--label);
+}
+
+.brand-ver {
+  margin-top: 12rpx;
+  font-size: 25rpx;
+  color: var(--label-3);
+}
+
+/* ---------- 项目介绍 ---------- */
+.intro {
+  padding: 34rpx 32rpx;
+  font-size: 28rpx;
+  line-height: 1.72;
+  color: var(--label-2);
+}
+
+.intro-note {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid var(--sep);
+  font-size: 26rpx;
+  color: var(--label-3);
+}
+
+.disclaimer {
+  padding: 34rpx 32rpx;
+  font-size: 26rpx;
+  line-height: 1.78;
+  color: var(--label-2);
+}
+
+/* ---------- 状态 ---------- */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 27rpx;
+}
+
+.status-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+}
+
+.status-ok {
+  color: var(--ios-green);
+}
+
+.status-ok .status-dot {
+  background: var(--ios-green);
+  box-shadow: 0 0 0 6rpx rgba(52, 199, 89, 0.16);
+}
+
+.status-off {
+  color: var(--label-3);
+}
+
+.status-off .status-dot {
+  background: var(--label-3);
+}
+
+.cell-danger {
+  color: var(--ios-red);
+}
+
+.cell-hover {
+  background: var(--fill);
+}
+
+/* ---------- 页脚 ---------- */
+.foot {
+  margin-top: 56rpx;
+  text-align: center;
+  font-size: 23rpx;
+  color: var(--label-3);
+  letter-spacing: 0.6rpx;
+}

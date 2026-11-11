@@ -1,0 +1,109 @@
+<view class="page-bg"></view>
+<ios-navbar title="预览与导出" showBack="{{true}}" scrollTop="{{scrollTop}}" />
+
+<view class="wrap" style="padding-top:{{navHeight}}px">
+
+  <block wx:if="{{record}}">
+
+    <!-- ============ 媒体舞台 ============ -->
+    <view class="stage anim-fade-up">
+      <block wx:if="{{record.type === 'video' && record.media[0] && !hideNativeMedia}}">
+        <video
+          class="video"
+          id="player"
+          src="{{record.media[0].url}}"
+          poster="{{record.cover}}"
+          controls
+          show-center-play-btn
+          object-fit="contain"
+          enable-progress-gesture="{{false}}"
+          bindplay="onPlay"
+        />
+      </block>
+
+      <block wx:elif="{{record.media.length && !hideNativeMedia}}">
+        <swiper class="swiper" indicator-dots indicator-color="rgba(255,255,255,.4)" indicator-active-color="#FFFFFF" circular>
+          <swiper-item wx:for="{{record.media}}" wx:key="index">
+            <image class="media-img" src="{{item.url}}" mode="aspectFit" data-index="{{index}}" bindtap="previewImages" />
+          </swiper-item>
+        </swiper>
+        <view class="stage-counter">{{mediaIndex + 1}} / {{record.media.length}}</view>
+      </block>
+
+      <view wx:else class="stage-fallback">
+        <view class="fb-icon"></view>
+        <text>素材加载中…</text>
+      </view>
+    </view>
+
+    <!-- ============ 信息卡 ============ -->
+    <view class="info anim-fade-up" style="animation-delay:.06s">
+      <view class="info-tags">
+        <text class="tag-platform" style="background:{{platformColor}}1A;color:{{platformColor}}">{{record.platformName}}</text>
+        <text class="tag-type">{{record.type === 'video' ? '视频' : '图文'}}</text>
+        <text wx:if="{{durationText}}" class="tag-type">{{durationText}}</text>
+      </view>
+      <view class="info-title">{{record.title}}</view>
+      <view wx:if="{{record.author}}" class="info-author">@{{record.author}}</view>
+    </view>
+
+    <!-- ============ 导出操作 ============ -->
+    <view class="section-title">导出</view>
+    <view class="group anim-fade-up" style="animation-delay:.12s">
+      <view class="cell" hover-class="cell-hover" hover-stay-time="60" bindtap="onSaveAll">
+        <view class="cell-icon icon-save"></view>
+        <view class="cell-label">{{saveLabel}}</view>
+        <view class="cell-arrow"></view>
+      </view>
+      <view class="cell" hover-class="cell-hover" hover-stay-time="60" bindtap="onCopyLink">
+        <view class="cell-icon icon-link"></view>
+        <view class="cell-label">复制原片直链</view>
+        <view class="cell-arrow"></view>
+      </view>
+      <view class="cell" hover-class="cell-hover" hover-stay-time="60" bindtap="onCopyTitle">
+        <view class="cell-icon icon-text"></view>
+        <view class="cell-label">复制标题文案</view>
+        <view class="cell-arrow"></view>
+      </view>
+      <view class="cell" hover-class="cell-hover" hover-stay-time="60" bindtap="onCopySource">
+        <view class="cell-icon icon-source"></view>
+        <view class="cell-label">复制原始分享链接</view>
+        <view class="cell-arrow"></view>
+      </view>
+    </view>
+
+    <!-- ============ 图片列表 ============ -->
+    <block wx:if="{{images.length > 1}}">
+      <view class="section-title">全部图片（{{images.length}}）</view>
+      <view class="grid anim-fade-up">
+        <view class="grid-item" wx:for="{{images}}" wx:key="index" data-index="{{index}}">
+          <image class="grid-img" src="{{item.url}}" mode="aspectFill" data-index="{{index}}" bindtap="previewImages" />
+          <view class="grid-save" catchtap="onSaveOne" data-index="{{index}}">存</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="foot-note">
+      素材已存到本机，解析记录只保存在你自己的设备上
+    </view>
+  </block>
+
+  <view wx:else class="empty">
+    <text>没有待预览的素材</text>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>
+
+<ios-loading show="{{busy}}" text="{{busyText}}" subText="{{busySub}}" />
+
+<ios-modal
+  show="{{modal.show}}"
+  title="{{modal.title}}"
+  content="{{modal.content}}"
+  confirmText="{{modal.confirmText}}"
+  cancelText="{{modal.cancelText}}"
+  showCancel="{{modal.showCancel}}"
+  bind:confirm="onModalConfirm"
+  bind:cancel="onModalCancel"
+/>

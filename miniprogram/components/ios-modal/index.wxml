@@ -1,0 +1,24 @@
+<view wx:if="{{show}}" class="md-mask" catchtouchmove="noop" bindtap="onMaskTap">
+  <view class="md-box anim-pop" catchtap="noop">
+    <view class="md-body">
+      <view wx:if="{{title}}" class="md-title">{{title}}</view>
+      <view wx:if="{{content}}" class="md-content">{{content}}</view>
+      <slot></slot>
+    </view>
+    <view class="md-actions">
+      <view
+        wx:if="{{showCancel}}"
+        class="md-btn md-cancel"
+        hover-class="md-btn-hover"
+        hover-stay-time="60"
+        bindtap="onCancel"
+      >{{cancelText}}</view>
+      <view
+        class="md-btn md-confirm {{destructive ? 'md-destructive' : ''}}"
+        hover-class="md-btn-hover"
+        hover-stay-time="60"
+        bindtap="onConfirm"
+      >{{confirmText}}</view>
+    </view>
+  </view>
+</view>

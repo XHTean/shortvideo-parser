@@ -1,0 +1,76 @@
+<view class="page-bg"></view>
+<ios-navbar title="解析历史" scrollTop="{{scrollTop}}" />
+
+<view class="wrap" style="padding-top:{{navHeight}}px">
+
+  <view class="head anim-fade-up">
+    <view class="head-title">解析历史</view>
+    <view class="head-sub">共 {{list.length}} 条 · 只存在你自己的设备上</view>
+  </view>
+
+  <block wx:if="{{list.length}}">
+    <view class="swipe-list anim-fade-up" style="animation-delay:.05s">
+      <movable-area class="swipe-area" wx:for="{{list}}" wx:key="id">
+        <movable-view
+          class="swipe-view"
+          direction="horizontal"
+          inertia="{{true}}"
+          out-of-bounds="{{false}}"
+          damping="{{48}}"
+          friction="{{6}}"
+          x="{{item.x}}"
+          data-id="{{item.id}}"
+          bindchange="onMove"
+          bindtouchend="onTouchEnd"
+        >
+          <view class="row" hover-class="row-hover" hover-stay-time="60" data-id="{{item.id}}" bindtap="onOpen">
+            <view class="thumb">
+              <image wx:if="{{item.cover}}" class="thumb-img" src="{{item.cover}}" mode="aspectFill" />
+              <view wx:else class="thumb-empty"></view>
+              <view wx:if="{{item.type === 'video'}}" class="thumb-play"></view>
+            </view>
+            <view class="row-main">
+              <view class="row-title">{{item.title}}</view>
+              <view class="row-meta">
+                <text class="meta-badge" style="color:{{item.platformColor}}">{{item.platformName}}</text>
+                <text class="meta-dot">·</text>
+                <text>{{item.timeText}}</text>
+                <text wx:if="{{item.type === 'image'}}" class="meta-dot">·</text>
+                <text wx:if="{{item.type === 'image'}}">{{item.mediaCount}} 图</text>
+              </view>
+            </view>
+          </view>
+        </movable-view>
+        <view class="swipe-delete" data-id="{{item.id}}" catchtap="onDelete">删除</view>
+      </movable-area>
+    </view>
+
+    <view class="btn btn-danger clear-btn" bindtap="onClearAll">清空全部记录</view>
+    <view class="foot-note">左滑单条可以删除</view>
+  </block>
+
+  <view wx:else class="empty anim-fade-up">
+    <view class="empty-art">
+      <view class="empty-card c1"></view>
+      <view class="empty-card c2"></view>
+      <view class="empty-card c3"></view>
+    </view>
+    <view class="empty-title">还没有解析记录</view>
+    <view class="empty-sub">去解析一条链接，记录会自动存在这里</view>
+    <view class="btn btn-ghost empty-btn" bindtap="goParse">去解析</view>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>
+
+<ios-modal
+  show="{{modal.show}}"
+  title="{{modal.title}}"
+  content="{{modal.content}}"
+  confirmText="{{modal.confirmText}}"
+  cancelText="{{modal.cancelText}}"
+  showCancel="{{modal.showCancel}}"
+  destructive="{{modal.destructive}}"
+  bind:confirm="onModalConfirm"
+  bind:cancel="onModalCancel"
+/>
